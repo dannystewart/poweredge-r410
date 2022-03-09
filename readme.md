@@ -1,34 +1,32 @@
-# Dell R410 Fan controller
+# Tools for Dell PowerEdge R410
 
-This python script reduces the noise of a Dell R410 server by controlling the fan speed with IPMI commands.
+Scripts and utilities for a Dell PowerEdge R410 running Proxmox VE.
 
-The original scrip was provided by marcusvb/r710-fancontroller on Github (Big thank you to Marcus)
+## Fan controller
 
-The script was modified to run directly on a lightly loaded R410 running Ubuntu server with two L5640 processors.
+Reduces noise by controlling the fan speed with IPMI commands. Based on [perryclements/r410-fancontroller](https://github.com/perryclements/r410-fancontroller).
 
-Things changed:
+### Installation
 
-1. Removed harddrive temperature check
-2. Check CPU maximum temperature
-3. Base CPU temperature settings on cpu Tcase rating (68 deg C for L5640)
-4. Script runs directly on server instead of on a remote machine
+Run `install-fan.sh` or follow instructions below. Should work on any Debian-based OS.
 
-It's recommended to install this script via systemd, see the `.service` file provided. You can install it as follows:
+```bash
+# Install prerequisites
+apt install ipmitool lm-sensors
 
-```
 # Place the service file in the systemd directory
-nano /etc/systemd/system/fan-controller.service
+cp fan/fan-controller.service /etc/systemd/system/fan-controller.service
 
 # Make executable
-chmod 644 fan-controller.service
+chmod 644 /etc/systemd/system/fan-controller.service
 
-# Place the python file in the root/scripts directory
-nano /root/scripts/fan.py
+# Place the Python file in the root/scripts directory
+cp fan/fan.py /root/scripts/fan.py
 
 # Make executable
-chmod 644 fan.py
+chmod 644 /root/scripts/fan.py
 
-# Reload systemd, enable the service and start it.
+# Reload systemd, then enable the service and start it
 systemctl daemon-reload
 systemctl enable fan-controller.service
 systemctl start fan-controller.service
@@ -37,8 +35,8 @@ systemctl start fan-controller.service
 service fan-controller status
 ```
 
-This allows the script to be enabled at boot.
+## Dell OpenManage installer for Proxmox VE 7.x
 
-This script is provided as is. I am not responsible for any damage done to your server. See the license for more information.
+Installs Dell OpenManage on a Proxmox VE server, based on [this guide](https://forum.proxmox.com/threads/dell-openmanage-on-proxmox-6-x.57932/). Written for Proxmox VE 7.x, but may work on other Debian-based distros.
 
-By perryclements on Github.
+To install, run `install-ome.sh`.
