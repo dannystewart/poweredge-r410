@@ -1,11 +1,9 @@
 """
 Python fan controller for Dell R410 based on CPU temperature.
-
 Created by perryclements/r410-fancontroller Github
-
 Based on original script by marcusvb/r710-fancontroller on Github
-
 """
+
 from subprocess import Popen, PIPE, STDOUT
 import time
 import string
@@ -13,11 +11,11 @@ import string
 Tcase = 68    # Tcase, maximum temperature allowed at the processor Integrated Heat Spreader (IHS).
 
 sleepTime = 10
-celcius = 'C'
+celsius = 'C'
 floatDot = '.'
 user = "root"
 password = "calvin"
-ip = "192.168.x.xx"
+ip = "192.168.119.39"
 
 #Do a command and return the stdout of proccess
 def sendcommand(cmdIn):
@@ -56,37 +54,37 @@ def checktemps(status):
         if (status != 1):
             checkstatus(status)
             ipmicmd("raw 0x30 0x30 0x02 0xff 0x18")
-            print("Cpu at: " + str(maxCpuT) + " celcius, Fan set to 4440 RPM", flush=True)
+            print("Cpu at: " + str(maxCpuT) + " celsius, Fan set to 4440 RPM", flush=True)
         status = 1
 
     elif(maxCpuT > (Tcase - 9) and maxCpuT <= (Tcase -7)):
         if (status != 2):
             checkstatus(status)
             ipmicmd("raw 0x30 0x30 0x02 0xff 0x26")
-            print("Cpu at: " + str(maxCpuT) + " celcius, Fan set to 7200 RPM", flush=True)
+            print("Cpu at: " + str(maxCpuT) + " celsius, Fan set to 7200 RPM", flush=True)
         status = 2
 
     elif(maxCpuT > (Tcase - 7) and maxCpuT <= (Tcase -5)):
         if (status != 3):
             checkstatus(status)
             ipmicmd("raw 0x30 0x30 0x02 0xff 0x34")
-            print("Cpu at: " + str(maxCpuT) + " celcius, Fan set to 7920 RPM", flush=True)
+            print("Cpu at: " + str(maxCpuT) + " celsius, Fan set to 7920 RPM", flush=True)
         status = 3
 
     elif(maxCpuT > (Tcase - 5) and maxCpuT <= (Tcase -2)):
         if (status != 4):
             checkstatus(status)
             ipmicmd("raw 0x30 0x30 0x02 0xff 0x36")
-            print("Cpu at: " + str(maxCpuT) + " celcius, Fan set to 10320 RPM", flush=True)
+            print("Cpu at: " + str(maxCpuT) + " celsius, Fan set to 10320 RPM", flush=True)
         status = 4
 
     else:
         if (status != 5):
             ipmicmd("raw 0x30 0x30 0x01 0x01")
-            print("Cpu at: " + str(maxCpuT) + " celcius, Fan set to auto/loud mode, Server it too hot")
+            print("Cpu at: " + str(maxCpuT) + " celsius, Fan set to auto/loud mode, Server it too hot")
         status = 5
 
-    # print("Cpu at: " + str(maxCpuT) + " celcius,  Fan status =" + str(status),flush=True)
+    # print("Cpu at: " + str(maxCpuT) + " celsius,  Fan status =" + str(status),flush=True)
     return status
 
 #Main running function.
@@ -98,4 +96,3 @@ def main():
         #print("Sleeping for " + str(sleepTime))
 if __name__ == '__main__':
     main()
-
