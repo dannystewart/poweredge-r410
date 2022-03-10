@@ -15,7 +15,7 @@ celsius = 'C'
 floatDot = '.'
 user = "root"
 password = "calvin"
-ip = "192.168.119.39"
+ip = "192.168.119.40"
 
 #Do a command and return the stdout of proccess
 def sendcommand(cmdIn):
