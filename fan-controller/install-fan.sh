@@ -8,6 +8,7 @@ cp fan-controller.service /etc/systemd/system/fan-controller.service
 chmod 644 /etc/systemd/system/fan-controller.service
 
 # Place the Python file in the root/scripts directory
+mkdir -p /root/scripts
 cp fan.py /root/scripts/fan.py
 
 # Make executable
