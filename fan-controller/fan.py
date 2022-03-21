@@ -8,7 +8,7 @@ from subprocess import Popen, PIPE, STDOUT
 import time
 import string
 
-Tcase = 68    # Tcase, maximum temperature allowed at the processor Integrated Heat Spreader (IHS).
+Tcase = 72    # Tcase, maximum temperature allowed at the processor Integrated Heat Spreader (IHS).
 
 sleepTime = 10
 celsius = 'C'
