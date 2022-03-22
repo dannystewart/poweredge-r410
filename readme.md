@@ -40,3 +40,7 @@ service fan-controller status
 Installs Dell OpenManage on a Proxmox VE server, based on [this guide](https://forum.proxmox.com/threads/dell-openmanage-on-proxmox-6-x.57932/). Written for Proxmox VE 7.x, but may work on other Debian-based distros.
 
 To install, run `install-ome.sh`.
+
+## Disclaimer
+
+These scripts and utilities are provided as is. I cannot be held responsible for anything bad happening to your server, home, or love life because of them.
